@@ -1,5 +1,3 @@
-
-
 import mongoose from "mongoose";
 const enderecoSchema = new mongoose.Schema({
   endereco: String,
@@ -12,7 +10,7 @@ const enderecoSchema = new mongoose.Schema({
 const freelancerSchema = new mongoose.Schema({
   especialidades: [String],
   enderecos: [enderecoSchema],
-  classificacao: Number,
+  classificacao: Number
 });
 const Freelancers = mongoose.model('freelancer',freelancerSchema);
 export default Freelancers
