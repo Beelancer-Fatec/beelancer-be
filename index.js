@@ -1,29 +1,27 @@
 import express from "express";
-
 import mongoose from "./config/db-connection.js";
+//MODELS
 import Users from "./Models/Users.js";
 import Clients from "./Models/Clients.js";
 import Freelancers from "./Models/Freelancers.js";
-import userRoutes from "./Routes/usersRoutes.js";
+//SERVICES
 import freelancersServices from "./Services/freelancersServices.js";
 import usersServices from "./Services/usersServices.js";
+//ROUTES
+import clientRoutes from "./Routes/clientsRoutes.js";
+import userRoutes from "./Routes/usersRoutes.js";
+//
 const app = express();
 
 //CONFIGURACAO EXPRESS
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use("/", userRoutes);
+app.use("/",clientRoutes)
 
 app.get("/", async (req, res) => {
   res.send("API BEELANCERS - BACKEND");
 });
-//CONEXAO MONGODB
-mongoose
-  .connect("mongodb://127.0.0.1:27017/BEELANCERS")
-  .then((connection) => {
-    console.log(`Banco de Dados conectado com sucesso! ${connection}`)
-})
-  .catch((error) => console.log(error));
 
 //ABRINDO SERVIDOR
 const port = 4001;

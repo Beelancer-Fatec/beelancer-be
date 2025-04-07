@@ -13,10 +13,10 @@ class clientsServices {
   }
 
   //CADASTRAR CLIENTE
-  async cadClient(endereco, contatos, classificacao) {
+  async cadClient(enderecos, contatos, classificacao) {
     try {
       const newClient = new Clients({
-        endereco,
+        enderecos,
         contatos,
         classificacao,
       });
@@ -37,9 +37,9 @@ class clientsServices {
   }
 
   //ALTERANDO UM CLIENTE
-  async updClient(id, endereco, contatos, classificacao) {
+  async updClient(id, enderecos, contatos, classificacao) {
     try {
-      await Clients.findByIdAndUpdate(id, endereco, contatos, classificacao);
+      await Clients.findByIdAndUpdate(id,{ enderecos, contatos, classificacao});
     } catch (error) {
       console.log(error);
     }
