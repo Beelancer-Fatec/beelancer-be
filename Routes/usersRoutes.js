@@ -4,7 +4,7 @@ import express from "express"
 const userRoutes = express.Router()
 
 userRoutes.post("/Auth",usersController.createUser)
-
+ 
 userRoutes.get("/Auth",usersController.getAllUsers)
 
 userRoutes.put("/Auth/:id",usersController.updtUser)
