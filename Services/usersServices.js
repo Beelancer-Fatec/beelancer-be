@@ -38,7 +38,7 @@ class UsersServices {
   //ALTERANDO UM USUARIO
   async updUser(id, nome, email, password) {
     try {
-      await Users.findByIdAndUpdate(id, nome, email, password);
+      await Users.findByIdAndUpdate(id,{ nome, email, password});
     } catch (error) {
       console.log(error);
     }

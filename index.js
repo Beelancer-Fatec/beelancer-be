@@ -1,5 +1,6 @@
 import express from "express";
-import mongoose from "mongoose";
+
+import mongoose from "./config/db-connection.js";
 import Users from "./Models/Users.js";
 import Clients from "./Models/Clients.js";
 import Freelancers from "./Models/Freelancers.js";
@@ -11,8 +12,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use("/",userRoutes)
 
-//CONEXAO MONGODB
-mongoose.connect("mongodb://127.0.0.1:27017/BEELANCERS");
+
 
 //ABRINDO SERVIDOR
 const port = 4001;
