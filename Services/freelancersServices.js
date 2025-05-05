@@ -1,4 +1,4 @@
-import Freelancers from "../Models/Freelancers.js";
+import Freelancers from "../Models/FreelancerModel.js";
 
 class freleancersServices {
   //LISTAR TODOS OS FREELANCERS

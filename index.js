@@ -1,9 +1,5 @@
 import express from "express";
 import mongoose from "./config/db-connection.js";
-//MODELS
-import Users from "./Models/Users.js";
-import Clients from "./Models/Clients.js";
-import Freelancers from "./Models/Freelancers.js";
 //SERVICES
 import freelancersServices from "./Services/freelancersServices.js";
 import usersServices from "./Services/usersServices.js";

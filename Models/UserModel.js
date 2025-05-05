@@ -4,9 +4,7 @@ const userSchema = new mongoose.Schema({
   nome: String,
   email: String,
   password: String,
-  teste: String
 });
 
-const Users = mongoose.model("User", userSchema);
-
+const Users = mongoose.model("user", userSchema);
 export default Users;
