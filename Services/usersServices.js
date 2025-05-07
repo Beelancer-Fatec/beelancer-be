@@ -1,4 +1,4 @@
-import Users from "../Models/Users.js";
+import Users from "../Models/UserModel.js";
 
 class UsersServices {
   //LISTAR TODOS OS USUARIOS
@@ -38,7 +38,11 @@ class UsersServices {
   //ALTERANDO UM USUARIO
   async updUser(id, nome, email, password) {
     try {
-      await Users.findByIdAndUpdate(id, { nome: nome, email: email, password: password });
+      await Users.findByIdAndUpdate(id, {
+        nome: nome,
+        email: email,
+        password: password,
+      });
     } catch (error) {
       console.log(error);
     }

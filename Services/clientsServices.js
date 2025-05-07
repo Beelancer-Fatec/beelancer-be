@@ -1,5 +1,5 @@
 
-import Clients from "../Models/Clients.js";
+import Clients from "../Models/ClientModel.js";
 
 class clientsServices {
   //LISTAR TODOS OS CLIENTES
