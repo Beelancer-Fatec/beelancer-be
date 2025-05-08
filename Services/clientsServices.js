@@ -1,4 +1,3 @@
-
 import Clients from "../Models/ClientModel.js";
 
 class clientsServices {
@@ -13,12 +12,12 @@ class clientsServices {
   }
 
   //CADASTRAR CLIENTE
-  async cadClient(enderecos, contatos, classificacao) {
+  async cadClient(enderecos, classificacao, user_id) {
     try {
       const newClient = new Clients({
         enderecos,
-        contatos,
         classificacao,
+        user_id,
       });
       await newClient.save();
     } catch (error) {
@@ -37,9 +36,23 @@ class clientsServices {
   }
 
   //ALTERANDO UM CLIENTE
-  async updClient(id, enderecos, contatos, classificacao) {
+  async updClient(id, enderecos, classificacao) {
     try {
-      await Clients.findByIdAndUpdate(id,{ enderecos, contatos, classificacao});
+      await Clients.findByIdAndUpdate(id, {
+        enderecos,
+        contatos,
+        classificacao,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  //PEGANDO UM UNICO CLIENT
+  async getOne(id) {
+    try {
+      const cliente = await Clients.findById(id);
+      return cliente;
     } catch (error) {
       console.log(error);
     }

@@ -2,8 +2,8 @@ import clientsServices from "../Services/clientsServices.js";
 import { ObjectId } from "mongodb";
 const createClient = async (req, res) => {
   try {
-    const { enderecos, classificacao, contatos } = req.body;
-    await clientsServices.cadClient(enderecos, contatos, classificacao);
+    const {endereco, classificacao,user_id} = req.body;
+    await clientsServices.cadClient(endereco, classificacao,user_id);
     res.sendStatus(201);
   } catch (error) {
     console.log(error);
@@ -34,11 +34,23 @@ const updtClient = async (req,res)=>{
     try{
         if(ObjectId.isValid(req.params.id)){
             const id = req.params.id
-            const {enderecos,contatos,classificacao} = req.body
-            await clientsServices.updClient(id,enderecos,contatos,classificacao)
+            const {enderecos,user_id,classificacao} = req.body
+            await clientsServices.updClient(id,enderecos,classificacao,user_id)
             res.sendStatus(200)
         }else{
             res.sendStatus(400)
+        }
+    }catch(error){
+        console.log(error)
+    }
+}
+
+const getOneClient = async(req,res)=>{
+    try{
+        if(ObjectId.isValid(req.params.id)){
+            const id = req.params.id
+            const cliente = await clientsServices.getOne(id)
+            res.status(201).json({cliente:cliente})
         }
     }catch(error){
         console.log(error)

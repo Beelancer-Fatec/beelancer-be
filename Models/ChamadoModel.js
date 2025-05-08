@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { enderecoSchema } from "./enderecoSchema.js";
+import { enderecoSchema } from "./schemas/EnderecoSchema.js";
 
 const servicoSchema = new mongoose.Schema({
   tipo: String,
@@ -16,8 +16,8 @@ const chamadoSchema = new mongoose.Schema({
   data_realizacao: Date,
   tipo_servico: [String],
   valor_a_pagar: mongoose.Types.Decimal128,
-  data_criacao: Date,
-  data_edicao: Date,
+  data_criacao: {type:Date, default:Date.now},
+  data_edicao: {type:Date,default:Date.now},
   status: String,
   endereco: enderecoSchema
 });

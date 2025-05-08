@@ -11,13 +11,24 @@ class freleancersServices {
     }
   }
 
+  async getOne(id){
+    try{
+      const freelancer = await Freelancers.findById(id)
+      return freelancer
+    }catch(error){
+      console.log(error)
+    }
+  }
   //CADASTRAR FREELANCER
-  async cadFreela(especialidades, contatos, classificacao) {
+  async cadFreela(especialidades,enderecos,classificacao,user_id) {
     try {
       const newFreelas = new Freelancers({
         especialidades,
-        contatos,
+        enderecos,
         classificacao,
+        user_id
+        
+      
       });
       await newFreelas.save();
     } catch (error) {
@@ -36,12 +47,12 @@ class freleancersServices {
   }
 
   //ALTERANDO UM CLIENTE
-  async updClient(id, especialidades, contatos, classificacao) {
+  async updFreela(id, especialidades,enderecos, classificacao) {
     try {
       await Freelancers.findByIdAndUpdate(
         id,
         especialidades,
-        contatos,
+        enderecos,
         classificacao
       );
     } catch (error) {
