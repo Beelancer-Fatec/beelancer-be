@@ -11,11 +11,31 @@ class clientsServices {
     }
   }
 
+  //LISTAR TODOS OS CLIENTES COM DETALHES DE USERS
+  async getAllWithUserDetails() {
+    try {
+      const clients = await Clients.find()
+        .populate("user_id", "-password")
+        .lean();
+
+      const clientsFormated = clients.map((freelancer) => {
+        freelancer.user = freelancer.user_id;
+        delete freelancer.user_id;
+
+        return freelancer;
+      });
+
+      return clientsFormated;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   //CADASTRAR CLIENTE
-  async cadClient(enderecos, classificacao, user_id) {
+  async cadClient(endereco, classificacao, user_id) {
     try {
       const newClient = new Clients({
-        enderecos,
+        endereco,
         classificacao,
         user_id,
       });
@@ -52,6 +72,22 @@ class clientsServices {
   async getOne(id) {
     try {
       const cliente = await Clients.findById(id);
+      return cliente;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  //PEGANDO UM UNICO CLIENT COM DETALHES DE USER
+  async getOneWithUserDetails(id) {
+    try {
+      const cliente = await Clients.findById(id)
+        .populate("user_id", "-password")
+        .lean();
+
+      cliente.user = cliente.user_id;
+      delete cliente.user_id;
+
       return cliente;
     } catch (error) {
       console.log(error);
