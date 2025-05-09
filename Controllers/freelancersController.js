@@ -112,6 +112,19 @@ const deleteFreelancer = async (req, res) => {
     res.sendStatus(500);
   }
 };
+//PROCURANDO FREELANCERS POR ESPECIALIDADE
+const GetFreeByEspec = async (req,res)=>{
+    try{
+        const especialidade = req.params.especialidade
+
+        console.log("Especialidade recebida:", especialidade);  // Verifique o valor aqui!
+        const Freelancers = await freelancersServices.getFreelancersByEspecialidade(especialidade)
+        res.status(200).json({Freelancers})
+    }catch(error){
+        console.log(error)
+
+    }
+}
 export default {
   deleteFreelancer,
   UpdateFreelancer,
@@ -120,4 +133,5 @@ export default {
   CreateFreelancer,
   GetOneFreelancerWithUserDetails,
   GetAllFreelancersWithUserDetails,
+  GetFreeByEspec
 };
