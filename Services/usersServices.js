@@ -1,6 +1,17 @@
 import Users from "../Models/UserModel.js";
 
 class UsersServices {
+  //BUSCAR USUARIO PELO ID
+  async getById(id) {
+    try {
+      const users = await Users.findById(id);
+      return users;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+
   //LISTAR TODOS OS USUARIOS
   async getAll() {
     try {
@@ -12,14 +23,16 @@ class UsersServices {
   }
 
   //CADASTRAR USUARIOS
-  async cadUser(nome, email, password) {
+  async cadUser(nome, email, password, image_URL) {
     try {
       const newUser = new Users({
         nome,
         email,
         password,
+        image_URL,
       });
       await newUser.save();
+      return newUser;
     } catch (error) {
       console.log(error);
     }
@@ -36,13 +49,15 @@ class UsersServices {
   }
 
   //ALTERANDO UM USUARIO
-  async updUser(id, nome, email, password) {
+  async updUser(id, nome, email, password, image_URL) {
     try {
-      await Users.findByIdAndUpdate(id, {
+      const updatedUser = await Users.findByIdAndUpdate(id, {
         nome: nome,
         email: email,
         password: password,
+        image_URL: image_URL,
       });
+      return updatedUser;
     } catch (error) {
       console.log(error);
     }

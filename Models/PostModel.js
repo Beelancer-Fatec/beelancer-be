@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { postImagemSchema } from "./schemas/PostImagemSchema";
+import { postImagemSchema } from "./schemas/PostImagemSchema.js";
 const postSchema = new mongoose.Schema({
   freelancer_id: { type: mongoose.Schema.Types.ObjectId, ref: "freelancer" },
   imagens: [postImagemSchema],

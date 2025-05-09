@@ -3,7 +3,7 @@ import { enderecoSchema } from "./schemas/EnderecoSchema.js";
 
 const clientSchema = new mongoose.Schema({
   endereco: enderecoSchema,
-  classificacao: String,
+  classificacao: Number,
   user_id: { type: mongoose.Schema.Types.ObjectId, ref: "user" }
 });
 
