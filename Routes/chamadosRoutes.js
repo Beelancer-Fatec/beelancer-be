@@ -8,7 +8,7 @@ chamadosRoutes.get("/chamados/:id", chamadosController.GetOneChamado);
 
 chamadosRoutes.put("/chamados/:id", chamadosController.updateChamado);
 
-chamadosRoutes.post("/chamados", chamadosController.createChamados);
+chamadosRoutes.post("/chamado", chamadosController.createChamados);
 
 chamadosRoutes.delete("/chamados", chamadosController.deleteChamados);
 

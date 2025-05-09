@@ -12,6 +12,7 @@ class chamadosServices {
     data_criacao,
     data_edicao,
     status,
+    status_servico,
     endereco
   ) {
     try {
@@ -20,12 +21,13 @@ class chamadosServices {
         freelancer_id,
         titulo,
         descricao,
-        data_realizacao,
+        data_realizacao: data_realizacao ?? null,
         tipo_servico,
-        valor_a_pagar,
+        valor_a_pagar: valor_a_pagar ?? null,
         data_criacao,
         data_edicao,
         status,
+        status_servico,
         endereco,
       });
       await NewChamado.save();
@@ -75,25 +77,23 @@ class chamadosServices {
     status,
     endereco
   ) {
-    try{
-    await Chamados.findByIdAndUpdate(id,
-        {
-            client_id,
-            freelancer_id,
-            titulo,
-            descricao,
-            data_realizacao,
-            tipo_servico,
-            valor_a_pagar,
-            data_criacao,
-            data_edicao,
-            status,
-            endereco,
-        })
-  }catch(error){
-    console.log(error)
+    try {
+      await Chamados.findByIdAndUpdate(id, {
+        client_id,
+        freelancer_id,
+        titulo,
+        descricao,
+        data_realizacao,
+        tipo_servico,
+        valor_a_pagar,
+        data_criacao,
+        data_edicao,
+        status,
+        endereco,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
-
-}
-export default chamadosServices;
+export default new chamadosServices();
