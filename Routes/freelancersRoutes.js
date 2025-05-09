@@ -1,20 +1,22 @@
-import freelancersController from "../Controllers/freelancersController.js";
-import express from "express";
+    import freelancersController from "../Controllers/freelancersController.js";
+    import express from "express";
 
-const freelancersRoutes = express.Router()
+    const freelancersRoutes = express.Router()
 
-freelancersRoutes.get("/freelancers",freelancersController.GetAllFreelancers)
+    freelancersRoutes.get("/freelancers",freelancersController.GetAllFreelancers)
 
-freelancersRoutes.get("/freelancers/details",freelancersController.GetAllFreelancersWithUserDetails)
+    freelancersRoutes.get("/freelancers/details",freelancersController.GetAllFreelancersWithUserDetails)
 
-freelancersRoutes.get("/freelancer/:id",freelancersController.GetOneFreelancer)
+    freelancersRoutes.get("/freelancer/:id",freelancersController.GetOneFreelancer)
 
-freelancersRoutes.get("/freelancer/details/:id",freelancersController.GetOneFreelancerWithUserDetails)
+    freelancersRoutes.get("/freelancer/details/:id",freelancersController.GetOneFreelancerWithUserDetails)
 
-freelancersRoutes.post("/freelancer",freelancersController.CreateFreelancer)
+    freelancersRoutes.get("/freelancers/search/:especialidade",freelancersController.GetFreeByEspec)
 
-freelancersRoutes.put("/freelancers/:id",freelancersController.UpdateFreelancer)
+    freelancersRoutes.post("/freelancer",freelancersController.CreateFreelancer)
 
-freelancersRoutes.delete("/freelancer/:id",freelancersController.deleteFreelancer)
+    freelancersRoutes.put("/freelancer/:id",freelancersController.UpdateFreelancer)
 
-export default freelancersRoutes;
+    freelancersRoutes.delete("/freelancer/:id",freelancersController.deleteFreelancer)
+
+    export default freelancersRoutes;

@@ -1,11 +1,18 @@
 import express from "express";
-import postsController from "../Controllers/postsController";
-const router = express.Router();
+import postsController from "../Controllers/postsController.js";
+const PostsRouter = express.Router();
 
-router.get("/posts", postsController.getAllPosts);
+PostsRouter.get("/posts", postsController.getAllPosts);
 
-router.get("/post/:id");
+PostsRouter.get("/post/:id", postsController.getOnePostById);
 
-router.post("/post", postsController.createPost);
+PostsRouter.get(
+  "/posts/freelancer/:freelancer_id",
+  postsController.getAllPostsOfFreelancerByFreelancerId
+);
 
-router.delete("/post/:id");
+PostsRouter.post("/post", postsController.createPost);
+
+PostsRouter.delete("/post/:id", postsController.deletePostById);
+
+export default PostsRouter;

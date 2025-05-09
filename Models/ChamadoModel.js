@@ -19,6 +19,7 @@ const chamadoSchema = new mongoose.Schema({
   data_criacao: {type:Date, default:Date.now},
   data_edicao: {type:Date,default:Date.now},
   status: String,
+  status_servico: String,
   endereco: enderecoSchema
 });
 
