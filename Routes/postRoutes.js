@@ -4,10 +4,15 @@ const PostsRouter = express.Router();
 
 PostsRouter.get("/posts", postsController.getAllPosts);
 
-//PostsRouter.get("/post/:id");
+PostsRouter.get("/post/:id", postsController.getOnePostById);
+
+PostsRouter.get(
+  "/posts/freelancer/:freelancer_id",
+  postsController.getAllPostsOfFreelancerByFreelancerId
+);
 
 PostsRouter.post("/post", postsController.createPost);
 
-//PostsRouter.delete("/post/:id");
+PostsRouter.delete("/post/:id", postsController.deletePostById);
 
-export default PostsRouter
+export default PostsRouter;
