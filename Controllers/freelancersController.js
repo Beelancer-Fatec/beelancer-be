@@ -115,7 +115,7 @@ const deleteFreelancer = async (req, res) => {
 //PROCURANDO FREELANCERS POR ESPECIALIDADE
 const GetFreeByEspec = async (req,res)=>{
     try{
-        const especialidade = req.params.especialidade
+        const {especialidade} = req.body
 
         console.log("Especialidade recebida:", especialidade);  // Verifique o valor aqui!
         const Freelancers = await freelancersServices.getFreelancersByEspecialidade(especialidade)

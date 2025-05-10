@@ -11,7 +11,7 @@
 
     freelancersRoutes.get("/freelancer/details/:id",freelancersController.GetOneFreelancerWithUserDetails)
 
-    freelancersRoutes.get("/freelancers/search/:especialidade",freelancersController.GetFreeByEspec)
+    freelancersRoutes.post("/freelancers/search",freelancersController.GetFreeByEspec)
 
     freelancersRoutes.post("/freelancer",freelancersController.CreateFreelancer)
 

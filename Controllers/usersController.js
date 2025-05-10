@@ -42,6 +42,18 @@ const getAllUsers = async (req, res) => {
     console.log(error);
   }
 };
+//LOGIN
+const LoginUser = async (req,res)=>{
+  try{
+    const { email , password} = req.body
+    
+    const user = await usersServices.Login(email,password)
+    res.status(200).json({UsuarioLogado:user})
+  }catch(error){
+    console.log(error)
+    res.sendStatus(500)
+  }
+}
 
 const updtUser = async (req, res) => {
   try {
@@ -82,4 +94,4 @@ const deleUser = async (req, res) => {
   }
 };
 
-export default { updtUser, createUser, deleUser, getAllUsers, getUserById };
+export default { LoginUser,updtUser, createUser, deleUser, getAllUsers, getUserById };
