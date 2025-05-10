@@ -4,9 +4,12 @@ import express from "express";
 const chamadosRoutes = express.Router();
 
 chamadosRoutes.get("/chamados", chamadosController.getAllChamados);
+
 chamadosRoutes.get("/chamados/:id", chamadosController.GetOneChamado);
 
-chamadosRoutes.put("/chamados/:id", chamadosController.updateChamado);
+chamadosRoutes.get("/chamados/buscar/ativo", chamadosController.getAllChamadosAtivos);
+
+chamadosRoutes.put("/chamado/:id", chamadosController.updateChamado);
 
 chamadosRoutes.post("/chamado", chamadosController.createChamados);
 

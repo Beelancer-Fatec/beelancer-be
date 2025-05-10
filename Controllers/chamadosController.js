@@ -2,8 +2,19 @@ import chamadosServices from "../Services/chamadosServices.js";
 import { ObjectId } from "mongodb";
 const getAllChamados = async (req, res) => {
   try {
-    const Chamados = chamadosServices.getAll();
-    res.sendStatus(200).json({ chamados: Chamados });
+    const chamados = await chamadosServices.GetAll();
+    res.status(200).json({ chamados: chamados });
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+};
+
+const getAllChamadosAtivos = async (req, res) => {
+  try {
+    const chamadosAtivos = await chamadosServices.GetAllAtivo();
+    console.log(chamadosAtivos);
+    return res.status(200).json({ chamados: chamadosAtivos });
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
@@ -76,9 +87,12 @@ const updateChamado = async (req, res) => {
         data_criacao,
         data_edicao,
         status,
+        status_servico,
         endereco,
       } = req.body;
-      await chamadosServices.updtChamado(id, {
+
+      await chamadosServices.updtChamado(
+        id,
         client_id,
         freelancer_id,
         titulo,
@@ -89,8 +103,13 @@ const updateChamado = async (req, res) => {
         data_criacao,
         data_edicao,
         status,
-        endereco,
-      });
+        status_servico,
+        endereco
+      );
+
+      res.sendStatus(204);
+    } else {
+      res.sendStatus(400);
     }
   } catch (error) {
     console.log(error);
@@ -102,8 +121,13 @@ const GetOneChamado = async (req, res) => {
   try {
     if (ObjectId.isValid(req.params.id)) {
       const id = req.params.id;
-      const chamado = await chamadosServices.getOne(id);
-      res.sendStatus(200).json({ chamado: chamado });
+      const chamado = await chamadosServices.GetOne(id);
+
+      if (!chamado) {
+        return res.status(404).json({ error: "Não encontrado" });
+      }
+
+      return res.status(200).json({ chamado: chamado });
     } else {
       res.sendStatus(400);
     }
@@ -118,4 +142,5 @@ export default {
   updateChamado,
   getAllChamados,
   GetOneChamado,
+  getAllChamadosAtivos,
 };
