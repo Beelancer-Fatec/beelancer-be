@@ -8,7 +8,8 @@ import clientRoutes from "./Routes/clientsRoutes.js";
 import userRoutes from "./Routes/usersRoutes.js";
 import chamadosRoutes from "./Routes/chamadosRoutes.js";
 import freelancersRoutes from "./Routes/freelancersRoutes.js";
-import PostsRouter from "./Routes/postRoutes.js";
+import PostsRoutes from "./Routes/postRoutes.js";
+import InteressesRoutes from "./Routes/InteressesRoutes.js";
 //
 const app = express();
 
@@ -18,8 +19,9 @@ app.use(express.json());
 app.use("/", userRoutes);
 app.use("/", clientRoutes);
 app.use("/", chamadosRoutes);
-app.use("/",freelancersRoutes)
-app.use("/",PostsRouter)
+app.use("/", freelancersRoutes);
+app.use("/", PostsRoutes);
+app.use("/", InteressesRoutes);
 app.get("/", async (req, res) => {
   res.send("API BEELANCERS - BACKEND");
 });
