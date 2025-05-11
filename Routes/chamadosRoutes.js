@@ -4,12 +4,15 @@ import express from "express";
 const chamadosRoutes = express.Router();
 
 chamadosRoutes.get("/chamados", chamadosController.getAllChamados);
-chamadosRoutes.get("/chamados/:id", chamadosController.GetOneChamado);
 
-chamadosRoutes.put("/chamados/:id", chamadosController.updateChamado);
+chamadosRoutes.get("/chamado/:id", chamadosController.GetOneChamado);
 
-chamadosRoutes.post("/chamados", chamadosController.createChamados);
+chamadosRoutes.get("/chamados/buscar/ativo", chamadosController.getAllChamadosAtivos);
 
-chamadosRoutes.delete("/chamados", chamadosController.deleteChamados);
+chamadosRoutes.put("/chamado/:id", chamadosController.updateChamado);
+
+chamadosRoutes.post("/chamado", chamadosController.createChamados);
+
+chamadosRoutes.delete("/chamado", chamadosController.deleteChamados);
 
 export default chamadosRoutes;

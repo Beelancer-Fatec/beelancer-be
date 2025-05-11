@@ -33,7 +33,7 @@ class freleancersServices {
 
   //BUSCAR FREELANCER PELO ID
   async getOne(id) {
-    try {
+    try {crea
       const freelancer = await Freelancers.findById(id);
       return freelancer;
     } catch (error) {
