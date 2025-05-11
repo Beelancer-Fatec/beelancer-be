@@ -7,7 +7,7 @@ class freleancersServices {
       const freelancers = await Freelancers.find();
       return freelancers;
     } catch (error) {
-      console.log(`Erro ao encontrar o freelancer\n`,error);
+      console.log(`Erro ao encontrar o freelancer\n`, error);
     }
   }
 
@@ -27,17 +27,17 @@ class freleancersServices {
 
       return updatedFreelancers;
     } catch (error) {
-      console.log(`Erro ao encontrar o freelancer\n`,error);
+      console.log(`Erro ao encontrar o freelancer\n`, error);
     }
   }
 
   //BUSCAR FREELANCER PELO ID
   async getOne(id) {
-    try {crea
+    try {
       const freelancer = await Freelancers.findById(id);
       return freelancer;
     } catch (error) {
-      console.log(`Erro ao encontrar o freelancer de ID:${id}\n`,error);
+      console.log(`Erro ao encontrar o freelancer de ID:${id}\n`, error);
     }
   }
 
@@ -51,7 +51,7 @@ class freleancersServices {
       delete freelancer.user_id;
       return freelancer;
     } catch (error) {
-      console.log(`Erro ao encontrar o freelancer de ID:${id}\n`,error);
+      console.log(`Erro ao encontrar o freelancer de ID:${id}\n`, error);
     }
   }
   //CADASTRAR FREELANCER
@@ -65,7 +65,7 @@ class freleancersServices {
       });
       await newFreelas.save();
     } catch (error) {
-      console.log("Erro ao cadastrar Freelancers",error);
+      console.log("Erro ao cadastrar Freelancers", error);
     }
   }
 
@@ -75,7 +75,7 @@ class freleancersServices {
       await Freelancers.findByIdAndDelete(id);
       console.log(`Freelancer com o id ${id} foi deletado`);
     } catch (error) {
-      console.log(`Erro ao deletar o freelancer de ID:${id}\n`,error);
+      console.log(`Erro ao deletar o freelancer de ID:${id}\n`, error);
     }
   }
 
@@ -89,18 +89,19 @@ class freleancersServices {
         classificacao
       );
     } catch (error) {
-      console.log(`Erro ao atualizar o freelancer de ID:${id}\n`,error);
+      console.log(`Erro ao atualizar o freelancer de ID:${id}\n`, error);
     }
   }
 
-async getFreelancersByEspecialidade(pesquisa) {
-  try {
-    const Freelancer = await Freelancers.find({ especialidades:{$in:[pesquisa] }});
-    return Freelancer;
-  } catch (erro) {
-    console.log("Erro ao buscar freelancers por especialidade:", erro);
+  async getFreelancersByEspecialidade(pesquisa) {
+    try {
+      const Freelancer = await Freelancers.find({
+        especialidades: { $in: [pesquisa] },
+      });
+      return Freelancer;
+    } catch (erro) {
+      console.log("Erro ao buscar freelancers por especialidade:", erro);
     }
-}
-
+  }
 }
 export default new freleancersServices();

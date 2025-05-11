@@ -63,8 +63,9 @@ const deleteChamados = async (req, res) => {
     if (ObjectId.isValid(req.params.id)) {
       const id = req.params.id;
       await chamadosServices.delChamado(id);
+      return res.sendStatus(204);
     } else {
-      res.sendStatus();
+      res.sendStatus(400);
     }
   } catch (error) {
     console.log(error);

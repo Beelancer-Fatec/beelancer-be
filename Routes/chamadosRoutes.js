@@ -7,12 +7,15 @@ chamadosRoutes.get("/chamados", chamadosController.getAllChamados);
 
 chamadosRoutes.get("/chamado/:id", chamadosController.GetOneChamado);
 
-chamadosRoutes.get("/chamados/buscar/ativo", chamadosController.getAllChamadosAtivos);
+chamadosRoutes.get(
+  "/chamados/buscar/ativo",
+  chamadosController.getAllChamadosAtivos
+);
 
 chamadosRoutes.put("/chamado/:id", chamadosController.updateChamado);
 
 chamadosRoutes.post("/chamado", chamadosController.createChamados);
 
-chamadosRoutes.delete("/chamado", chamadosController.deleteChamados);
+chamadosRoutes.delete("/chamado/:id", chamadosController.deleteChamados);
 
 export default chamadosRoutes;

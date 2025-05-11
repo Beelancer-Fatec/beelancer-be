@@ -42,7 +42,7 @@ const GetOneFreelancer = async (req, res) => {
     if (ObjectId.isValid(req.params.id)) {
       const id = req.params.id;
       const Freelancer = await freelancersServices.getOne(id);
-
+      console.log(Freelancer);
       if (!Freelancer) {
         return res.status(404).json({ error: "Freelancer Não Encontrado" });
       }
