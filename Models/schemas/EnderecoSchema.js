@@ -9,3 +9,4 @@ export const enderecoSchema = new mongoose.Schema({
   complemento: String,
   cep: String,
 });
+export default enderecoSchema
