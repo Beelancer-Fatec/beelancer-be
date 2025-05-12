@@ -1,4 +1,3 @@
-
 import Clients from "../Models/ClientModel.js";
 
 class clientsServices {
@@ -12,13 +11,33 @@ class clientsServices {
     }
   }
 
+  //LISTAR TODOS OS CLIENTES COM DETALHES DE USERS
+  async getAllWithUserDetails() {
+    try {
+      const clients = await Clients.find()
+        .populate("user_id", "-password")
+        .lean();
+
+      const clientsFormated = clients.map((freelancer) => {
+        freelancer.user = freelancer.user_id;
+        delete freelancer.user_id;
+
+        return freelancer;
+      });
+
+      return clientsFormated;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   //CADASTRAR CLIENTE
-  async cadClient(enderecos, contatos, classificacao) {
+  async cadClient(endereco, classificacao, user_id) {
     try {
       const newClient = new Clients({
-        enderecos,
-        contatos,
+        endereco,
         classificacao,
+        user_id,
       });
       await newClient.save();
     } catch (error) {
@@ -37,9 +56,39 @@ class clientsServices {
   }
 
   //ALTERANDO UM CLIENTE
-  async updClient(id, enderecos, contatos, classificacao) {
+  async updClient(id, enderecos, classificacao) {
     try {
-      await Clients.findByIdAndUpdate(id,{ enderecos, contatos, classificacao});
+      await Clients.findByIdAndUpdate(id, {
+        enderecos,
+        contatos,
+        classificacao,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  //PEGANDO UM UNICO CLIENT
+  async getOne(id) {
+    try {
+      const cliente = await Clients.findById(id);
+      return cliente;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  //PEGANDO UM UNICO CLIENT COM DETALHES DE USER
+  async getOneWithUserDetails(id) {
+    try {
+      const cliente = await Clients.findById(id)
+        .populate("user_id", "-password")
+        .lean();
+
+      cliente.user = cliente.user_id;
+      delete cliente.user_id;
+
+      return cliente;
     } catch (error) {
       console.log(error);
     }

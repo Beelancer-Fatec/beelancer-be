@@ -1,14 +1,16 @@
 import usersController from "../Controllers/usersController.js";
-import express from "express"
+import express from "express";
 
-const userRoutes = express.Router()
+const userRoutes = express.Router();
 
-userRoutes.post("/Auth",usersController.createUser)
- 
-userRoutes.get("/Auth",usersController.getAllUsers)
+userRoutes.post("/user", usersController.createUser);
 
-userRoutes.put("/Auth/:id",usersController.updtUser)
+userRoutes.get("/user/:id", usersController.getUserById);
 
-userRoutes.delete("/Auth/:id",usersController.deleUser)
+userRoutes.get("/users", usersController.getAllUsers);
 
-export default userRoutes
+userRoutes.put("/user/:id", usersController.updtUser);
+
+userRoutes.delete("/user/:id", usersController.deleUser);
+
+export default userRoutes;
