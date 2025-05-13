@@ -10,7 +10,7 @@ import userRoutes from "./Routes/usersRoutes.js";
 import chamadosRoutes from "./Routes/chamadosRoutes.js";
 import freelancersRoutes from "./Routes/freelancersRoutes.js";
 import PostsRoutes from "./Routes/postRoutes.js";
-import InteressesRoutes from "./Routes/InteressesRoutes.js";
+import InteressesRoutes from "./Routes/interessesRoutes.js";
 //
 const app = express();
 
