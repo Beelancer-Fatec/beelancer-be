@@ -10,12 +10,19 @@ class PostsServices {
       .lean();
 
     const postsFormatted = posts.map((p) => {
-      p.freelancer_id.user = p.freelancer_id.user_id;
-      delete p.freelancer_id.user_id;
-
-      p.freelancer = p.freelancer_id;
-      delete p.freelancer_id;
-      return p;
+      return {
+        ...p,
+        freelancer: p.freelancer_id
+          ? {
+              ...p.freelancer_id,
+              user: p.freelancer_id.user_id
+                ? { ...p.freelancer_id.user_id, password: undefined }
+                : null,
+              user_id: undefined,
+            }
+          : null,
+        freelancer_id: undefined,
+      };
     });
     return postsFormatted;
   }
@@ -34,6 +41,7 @@ class PostsServices {
 
     console.log(post);
     post.freelancer_id.user = post.freelancer_id.user_id;
+    post.freelancer_id.user.password = undefined;
     delete post.freelancer_id.user_id;
 
     post.freelancer = post.freelancer_id;

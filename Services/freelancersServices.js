@@ -21,6 +21,7 @@ class freleancersServices {
       // Renomeia 'user_id' para 'user' em cada freelancer
       const updatedFreelancers = freelancers.map((freelancer) => {
         freelancer.user = freelancer.user_id;
+        freelancer.user.password = undefined;
         delete freelancer.user_id; // Remove o campo 'user_id'
         return freelancer;
       });
@@ -48,6 +49,7 @@ class freleancersServices {
         .populate("user_id", "-password")
         .lean();
       freelancer.user = freelancer.user_id;
+      freelancer.user.password = undefined;
       delete freelancer.user_id;
       return freelancer;
     } catch (error) {

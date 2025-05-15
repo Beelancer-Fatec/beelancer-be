@@ -20,6 +20,7 @@ class clientsServices {
 
       const clientsFormated = clients.map((freelancer) => {
         freelancer.user = freelancer.user_id;
+        freelancer.user.password = undefined;
         delete freelancer.user_id;
 
         return freelancer;
@@ -86,6 +87,7 @@ class clientsServices {
         .lean();
 
       cliente.user = cliente.user_id;
+      cliente.user.password = undefined;
       delete cliente.user_id;
 
       return cliente;
