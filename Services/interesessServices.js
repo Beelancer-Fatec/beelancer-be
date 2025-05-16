@@ -25,6 +25,7 @@ class InteressesServices {
           ...i.freelancer_id,
           user: {
             ...i.freelancer_id?.user_id,
+            password: undefined,
           },
           user_id: undefined,
         },
@@ -54,6 +55,7 @@ class InteressesServices {
           ...i.freelancer_id,
           user: {
             ...i.freelancer_id?.user_id,
+            password: undefined,
           },
           user_id: undefined,
         },
@@ -67,7 +69,7 @@ class InteressesServices {
 
     return interessesFormatted;
   }
-  
+
   async getAllByFreelancerID(freelancer_id) {
     const interesses = await Interesses.find({ freelancer_id: freelancer_id })
       .populate([
@@ -83,6 +85,7 @@ class InteressesServices {
           ...i.freelancer_id,
           user: {
             ...i.freelancer_id?.user_id,
+            password: undefined,
           },
           user_id: undefined,
         },
@@ -96,11 +99,9 @@ class InteressesServices {
 
     return interessesFormatted;
   }
-  
+
   async deleteInteresse(id) {
-    
     await Interesses.findByIdAndDelete(id);
-    
   }
 }
 export default new InteressesServices();
