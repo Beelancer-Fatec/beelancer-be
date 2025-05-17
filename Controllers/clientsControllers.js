@@ -97,6 +97,22 @@ const getOneClientWithUserDetails = async (req, res) => {
   }
 };
 
+const addAddress = async (req,res) =>{
+  try{
+    if(ObjectId.isValid(req.params.id)){
+    const  id = req.params.id
+    const  {novoEndereco} = req.body
+      const cliente = await clientsServices.addEndereco(id,novoEndereco)
+      res.status(201).json({cliente:cliente})
+    }else{
+      res.status(400)
+    }
+  }catch(error){
+    console.log(error)
+    res.sendStatus(500)
+  }
+}
+
 export default {
   updtClient,
   deleteClient,
@@ -105,4 +121,6 @@ export default {
   getOneClient,
   getOneClientWithUserDetails,
   getAllClientsWithUserDetails,
+  addAddress,
+
 };

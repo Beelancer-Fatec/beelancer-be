@@ -1,5 +1,5 @@
 import Users from "../Models/UserModel.js";
-
+import bcrypt from "bcrypt"
 class UsersServices {
   //BUSCAR USUARIO PELO ID
   async getById(id) {
@@ -22,21 +22,23 @@ class UsersServices {
     }
   }
 
-  //CADASTRAR USUARIOS
-  async cadUser(nome, email, password, image_URL) {
-    try {
-      const newUser = new Users({
-        nome,
-        email,
-        password,
-        image_URL,
-      });
-      await newUser.save();
-      return newUser;
-    } catch (error) {
-      console.log(error);
-    }
+ //CADASTRAR USUARIOS
+ async cadUser(nome, email, password, image_URL) {
+  try {
+    const Hashpassword = await bcrypt.hash(password,10)
+    const newUser = new Users({
+      nome,
+      email,
+      password:Hashpassword,
+      image_URL,
+    });
+    await newUser.save();
+    return newUser;
+  } catch (error) {
+    console.log(error);
   }
+}
+
 
   //DELETANDO UM USUARIO
   async delUser(id) {
@@ -61,6 +63,18 @@ class UsersServices {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  
+
+  async getByEmail(email){
+    try{
+      const user  = await Users.findOne({email:email})
+      return user
+    }catch(error){
+      console.log(error)
+    }
+    
   }
 }
 export default new UsersServices();

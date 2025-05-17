@@ -95,5 +95,15 @@ class clientsServices {
       console.log(error);
     }
   }
+  async addEndereco(id,newEndereco){
+    try{
+      const cliente = await Clients.findByIdAndUpdate(id,{ $push: { enderecos: newEndereco } },
+        { new: true })
+    return cliente;
+        
+    }catch(error){
+      console.log(error)
+    }
+  }
 }
 export default new clientsServices();
