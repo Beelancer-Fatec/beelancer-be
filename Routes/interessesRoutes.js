@@ -3,7 +3,7 @@ import InteressesController from "../Controllers/InteressesController.js";
 import Auth from "../Middleware/Auth.js";
 const routes = express.Router();
 
-routes.get("/interesses",Auth.Authorization, InteressesController.getAll);
+routes.get("/interesses", Auth.Authorization, InteressesController.getAll);
 
 routes.get("/interesses/chamado/:chamado_id",Auth.Authorization, InteressesController.getAllByChamadoID);
 

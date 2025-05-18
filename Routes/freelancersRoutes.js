@@ -4,9 +4,9 @@
 
     const freelancersRoutes = express.Router()
 
-    freelancersRoutes.get("/freelancers",Auth.Authorization,freelancersController.GetAllFreelancers)
+    freelancersRoutes.get("/freelancers" ,freelancersController.GetAllFreelancers)
 
-    freelancersRoutes.get("/freelancers/details",Auth.Authorization,freelancersController.GetAllFreelancersWithUserDetails)
+    freelancersRoutes.get("/freelancers/details",freelancersController.GetAllFreelancersWithUserDetails)
 
     freelancersRoutes.get("/freelancer/:id",Auth.Authorization,freelancersController.GetOneFreelancer)
 

@@ -1,11 +1,9 @@
 import usersServices from "../Services/usersServices.js";
 import { ObjectId } from "mongodb";
-import bcrypt from "bcrypt"
-import jwt from "jsonwebtoken"
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
-
-const JWTSecret = "apibeelancers"
-
+const JWTSecret = "apibeelancers";
 
 const createUser = async (req, res) => {
   try {
@@ -88,43 +86,53 @@ const deleUser = async (req, res) => {
   }
 };
 
-const loginUser = async (req,res) =>{
-  try{
-    const {email,password}=req.body
-    if(email !=undefined){
-      //EMAIL ENCONTRADO
-        const User = await usersServices.getByEmail(email)
-      if(User != undefined){
-         const Validacao = await bcrypt.compare(password,User.password)
+const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
 
-        if(Validacao){  
-          jwt.sign(
-            { id: User._id, email: User.email },
-            JWTSecret,
-            { expiresIn: "48h" },
-            (error, token) => {
-              if (error) {
-                res.status(400).json({ error: "Erro ao gerar o token." }); // Bad request
-              } else {
-                res.status(200).json({ token: token });
-              }
-            });
-        }else{
-          res.status(400)
-          res.json({err:"SENHA INCORRETA"})
-        }
-      }else{
-        res.status(400)
-        res.json({err:"USUARIO NAO ENCONTRADO"})
-      }
-
-    }else{
-      res.status(400)
-      res.json({err:"EMAIL INVALIDO"})
+    if (!email || !password) {
+      return res.status(400).json({ error: "Email e senha são obrigatórios." });
     }
-  }catch(error){
-    console.log(error)
-    res.sendStatus(500)
+
+    const user = await usersServices.getByEmail(email);
+
+    if (!user) {
+      return res.status(404).json({ error: "Usuário não encontrado." });
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      return res.status(401).json({ error: "Senha incorreta." });
+    }
+
+    jwt.sign(
+      { id: user._id, email: user.email },
+      JWTSecret,
+      { expiresIn: "48h", algorithm: "HS256" },
+      (err, token) => {
+        if (err) {
+          console.error("Erro ao gerar token:", err);
+          return res
+            .status(500)
+            .json({ error: "Erro interno ao gerar o token." });
+        }
+
+        return res.status(200).json({ token });
+      }
+    );
+  } catch (error) {
+    console.error("Erro no login:", error);
+    res.status(500).json({ error: "Erro interno no servidor." });
   }
-}
-export default { updtUser, createUser, deleUser, getAllUsers, getUserById, loginUser, JWTSecret };
+};
+
+export default {
+  updtUser,
+  createUser,
+  deleUser,
+  getAllUsers,
+  getUserById,
+  loginUser,
+  JWTSecret,
+};

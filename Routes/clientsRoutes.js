@@ -5,9 +5,9 @@ import Auth from "../Middleware/Auth.js";
 
 const clientRoutes = express.Router();
 
-clientRoutes.get("/clients", Auth.Authorization, clientsControllers.getAllClients)
+clientRoutes.get("/clients", clientsControllers.getAllClients)
 
-clientRoutes.get("/clients/details",Auth.Authorization, clientsControllers.getAllClientsWithUserDetails)
+clientRoutes.get("/clients/details", clientsControllers.getAllClientsWithUserDetails)
 
 clientRoutes.get("/client/:id", Auth.Authorization,clientsControllers.getOneClient)
 
