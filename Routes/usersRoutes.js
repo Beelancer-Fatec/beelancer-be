@@ -10,9 +10,9 @@ userRoutes.get("/user/:id", usersController.getUserById);
 
 userRoutes.get("/users", usersController.getAllUsers);
 
-userRoutes.put("/user/:id", usersController.updtUser);
+userRoutes.put("/user/:id", Auth.Authorization,usersController.updtUser);
 
-userRoutes.delete("/user/:id", usersController.deleUser);
+userRoutes.delete("/user/:id", Auth.Authorization,usersController.deleUser);
 
 userRoutes.post("/auth",usersController.loginUser)
 
