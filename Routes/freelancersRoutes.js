@@ -14,7 +14,7 @@
 
     freelancersRoutes.post("/freelancers/search",Auth.Authorization,freelancersController.GetFreeByEspec)
 
-    freelancersRoutes.post("/freelancer",Auth.Authorization,freelancersController.CreateFreelancer)
+    freelancersRoutes.post("/freelancer",freelancersController.CreateFreelancer)
 
     freelancersRoutes.put("/freelancer/:id",Auth.Authorization,freelancersController.UpdateFreelancer)
 

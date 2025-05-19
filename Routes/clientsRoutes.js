@@ -13,7 +13,7 @@ clientRoutes.get("/client/:id", Auth.Authorization,clientsControllers.getOneClie
 
 clientRoutes.get("/client/details/:id",Auth.Authorization, clientsControllers.getOneClientWithUserDetails)
 
-clientRoutes.post("/client", Auth.Authorization,clientsControllers.createClient)
+clientRoutes.post("/client",clientsControllers.createClient)
 
 clientRoutes.put("/client/:id", Auth.Authorization,clientsControllers.updtClient)
 

@@ -118,7 +118,7 @@ const loginUser = async (req, res) => {
             .json({ error: "Erro interno ao gerar o token." });
         }
 
-        return res.status(200).json({ token });
+        return res.status(200).json({ user_id: user._id, token: token });
       }
     );
   } catch (error) {
